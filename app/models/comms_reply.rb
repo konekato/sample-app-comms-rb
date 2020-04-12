@@ -1,0 +1,2 @@
+class CommsReply < ApplicationRecord
+end

@@ -1,6 +1,5 @@
-@user = User.new
-@user.name = 'Kei'
-@user.user_name = 'kei'
-@user.img = 'aaaaaaaaa'
-@user.prof = 'hello'
-@user.save
+@reply = CommsReply.new
+@reply.comm_id = 2
+@reply.from_user_id = 1
+@reply.to_user_id = 2
+@reply.save
