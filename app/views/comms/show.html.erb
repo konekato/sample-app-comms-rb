@@ -1,2 +1,69 @@
-<h1>Comms#show</h1>
-<p>Find me in app/views/comms/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+a {
+    text-decoration: none;
+    color: #000;
+}
+.hu:hover {
+    text-decoration: underline;
+}
+.content {
+    transition: 0.3s;
+}
+.content:hover {
+    background-color: #ffe;
+}
+.content-main p {
+    font-size: 20px;
+}
+.name {
+    font-weight: bold; 
+}
+.user-name {
+    color: #555;
+}
+</style>
+</head>
+<body>
+<h1>Comms</h1>
+<hr>
+<% @reply_to.each do |rto| %>
+    <div class="content">
+        <a href="/<%= rto.user_name %>/status/<%= rto.id %>">
+            <span class="name"><object><a class="hu" href="/<%= rto.user_name %>"><%= rto.name %></a></object></span><span class="user-name"> @<%= rto.user_name %></span>
+            <p><%= rto.content %></p>
+            <p><%= rto.created_at %></p>
+        </a>
+    </div>
+    <hr>
+<% end %>
+<% @comm.each do |c| %>
+    <div class="content-main">
+        <div class="name"><object><a class="hu" href="/<%= c.user_name %>"><%= c.name %></a></object></div>
+        <div class="user_name">@<%= c.user_name %></div>
+        <% @reply_to.each do |rto| %>
+            <div>replying to <a class="hu user-name" href="/<%= rto.user_name %>">@<%= rto.user_name %></a></div>
+        <% end %>
+        <p><%= c.content %></p>
+        <p><%= c.created_at %></p>
+    </div>
+    <hr>
+<% end %>
+<% @reply_from.each do |rfr| %>
+    <div class="content">
+        <a href="/<%= rfr.user_name %>/status/<%= rfr.id %>">
+            <span class="name"><object><a class="hu" href="/<%= rfr.user_name %>"><%= rfr.name %></a></object></span><span class="user-name"> @<%= rfr.user_name %></span>
+            <% @comm.each do |c| %>
+                <div>replying to <object><a class="hu user-name" href="/<%= c.user_name %>">@<%= c.user_name %></a></object></div>
+            <% end %>
+            <p><%= rfr.content %></p>
+            <p><%= rfr.created_at %></p>
+        </a>
+    </div>
+    <hr>
+<% end %>
+<a href="/home">go to home</a>
+</body>
+</html>

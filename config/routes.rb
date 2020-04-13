@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home', to: 'comms#index', as: 'comms'
+  get ':user_name/status/:comm_id', to: 'comms#show', as: 'comm'
 
   # get 'users/new', to: 'users#new', as: 'new_user'
   # post 'users/create', to: 'users#create'
