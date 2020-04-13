@@ -1,7 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+a {
+    text-decoration: none;
+    color: #000;
+}
+.hu:hover {
+    text-decoration: underline;
+}
+.content {
+    transition: 0.3s;
+}
+.content:hover {
+    background-color: #ffe;
+}
+.content-main p {
+    font-size: 20px;
+}
+.name {
+    font-weight: bold; 
+}
+.user-name {
+    color: #555;
+}
+</style>
+</head>
 <h1>Comms Home</h1>
-<% @comms.each do |comm| %>
+<% @comms.each do |c| %>
     <hr>
-    <h3><a href="/<%= comm.user_name %>"><%= comm.name %>@<%= comm.user_name %></a></h3>
-    <p><%= comm.content %></p>
-    <p><%= comm.created_at %></p>
+    <div class="content">
+        <a href="/<%= c.user_name %>/status/<%= c.id %>">
+            <span class="name"><object><a class="hu" href="/<%= c.user_name %>"><%= c.name %></a></object></span><span class="user-name"> @<%= c.user_name %></span>
+            <p><%= c.content %></p>
+            <p><%= c.created_at %></p>
+        </a>
+    </div>
 <% end %>
+</body>
+</html>
