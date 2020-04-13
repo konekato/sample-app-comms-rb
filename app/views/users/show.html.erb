@@ -1,3 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+a {
+    text-decoration: none;
+    color: #000;
+}
+.hu:hover {
+    text-decoration: underline;
+}
+.content {
+    transition: 0.3s;
+}
+.content:hover {
+    background-color: #ffe;
+}
+.content-main p {
+    font-size: 20px;
+}
+.name {
+    font-weight: bold; 
+}
+.user-name {
+    color: #555;
+}
+</style>
+</head>
+<body>
 <h1><%= @user[:name] %></h1>
 <p>@<%= @user[:user_name] %><p>
 <p><%= @user[:prof] %><p>
+<% @comms.each do |c| %>
+    <hr>
+    <div class="content">
+        <a href="/<%= @user[:user_name] %>/status/<%= c.id %>">
+            <span class="name"><object><a class="hu" href="/<%= @user[:user_name] %>"><%= @user[:name] %></a></object></span><span class="user-name"> @<%= @user[:user_name] %></span>
+            <p><%= c.content %></p>
+            <p><%= c.created_at %></p>
+        </a>
+    </div>
+<% end %>
+</body>
+</html>

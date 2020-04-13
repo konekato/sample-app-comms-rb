@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(:user_name => params[:user_name])
+    @comms = Comm.select("comms.*").joins("inner join users on comms.user_id = users.id").order("comms.created_at DESC").where("users.user_name = ?", params[:user_name])
   end
 
   # def edit
